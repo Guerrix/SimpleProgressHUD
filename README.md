@@ -2,7 +2,7 @@ h1. SimpleProgressHUD
 
 SimpleProgressHUD is an very simple and lightweight progress HUD for iOS.  It is  highly inspired on Sam Vermette's SVProgressHUD:https://github.com/samvermette/SVProgressHUD for iOS. 
 
-!http://f.cl.ly/items/231Y2A0t0t1J0B0r3N0p/svprogresshud3.png!
+!http://goo.gl/N24qD!
 
 h2. Installation
 
