@@ -30,5 +30,5 @@ You dismiss it using:
 
 h2. Automatic Reference Counting (ARC) support
 
-If you are using ARC in your project just delete the @dealloc@ in the ProgressHUD Class
+Full supported thanks to "thefotes":https://github.com/thefotes contribution 
 
