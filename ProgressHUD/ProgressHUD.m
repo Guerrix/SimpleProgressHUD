@@ -3,20 +3,20 @@
 
 #import "ProgressHUD.h"
 
-static ProgressHUD* defaultHUD = nil;
-
 @implementation ProgressHUD
-
-@synthesize loadingLabel;
 
 #define DEFAULT_WIDTH 110
 #define DEFAULT_HEIGHT 100
 #define LOADING_TEXT @"Loading..."
 
-+(ProgressHUD *) defaultHUD {
-    if (defaultHUD==nil)
-		defaultHUD=[[ProgressHUD alloc] initWithFrame:CGRectMake(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT)];
-	return defaultHUD;
++ (ProgressHUD *) defaultHUD {
+    static ProgressHUD *shared = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        shared = [[ProgressHUD alloc] initWithFrame:CGRectMake(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT)];
+    });
+    
+    return shared;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -24,45 +24,45 @@ static ProgressHUD* defaultHUD = nil;
     self = [super initWithFrame:frame];
     if (self) {
 		
-		self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | 
+		self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |
         UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         
         // Initialization code.
 		double offset = DEFAULT_HEIGHT/2.0;
-		loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, DEFAULT_HEIGHT-2*offset/3.0, DEFAULT_WIDTH, offset/2)];
-        loadingLabel.textAlignment=UITextAlignmentCenter;
-		loadingLabel.backgroundColor=[UIColor clearColor];
-		loadingLabel.font=[UIFont boldSystemFontOfSize:14];
-		loadingLabel.textColor=[UIColor whiteColor];
+		self.loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, DEFAULT_HEIGHT-2*offset/3.0, DEFAULT_WIDTH, offset/2)];
+        self.loadingLabel.textAlignment=UITextAlignmentCenter;
+		self.loadingLabel.backgroundColor=[UIColor clearColor];
+		self.loadingLabel.font=[UIFont boldSystemFontOfSize:14];
+		self.loadingLabel.textColor=[UIColor whiteColor];
         
-        loadingLabel.text = LOADING_TEXT;
+        self.loadingLabel.text = LOADING_TEXT;
 		
-		backgroundView= [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT)];
-        backgroundView.alpha=0.65;
-		backgroundView.backgroundColor=[UIColor blackColor];
-        backgroundView.layer.cornerRadius=10;
+		self.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT)];
+        self.backgroundView.alpha=0.65;
+		self.backgroundView.backgroundColor=[UIColor blackColor];
+        self.backgroundView.layer.cornerRadius=10;
 		
         
-        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        activityIndicator.center=CGPointMake( DEFAULT_WIDTH/2, DEFAULT_HEIGHT/3);
-		[activityIndicator startAnimating];
-
-		[self addSubview:backgroundView];
-		[self addSubview:loadingLabel];
-        [self addSubview:activityIndicator];
+        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        self.activityIndicator.center=CGPointMake( DEFAULT_WIDTH/2, DEFAULT_HEIGHT/3);
+		[self.activityIndicator startAnimating];
+        
+		[self addSubview:self.backgroundView];
+		[self addSubview:self.loadingLabel];
+        [self addSubview:self.activityIndicator];
 		
     }
     return self;
 }
 
 -(void)setLoadingText:(NSString *)loadingText{
-	loadingLabel.text=loadingText;
+	self.loadingLabel.text=loadingText;
 }
 
 -(void) showInView:(UIView*)view {
-	self.alpha=1.0;
-    self.transform=CGAffineTransformMakeScale(1, 1);
-    self.center=CGPointMake(view.bounds.size.width/2.0, view.bounds.size.height/2.0);
+	self.alpha = 1.0;
+    self.transform = CGAffineTransformMakeScale(1, 1);
+    self.center = CGPointMake(view.bounds.size.width/2.0, view.bounds.size.height/2.0);
     [view addSubview:self];
 }
 
@@ -70,10 +70,29 @@ static ProgressHUD* defaultHUD = nil;
     [self removeFromSuperview];
 }
 
-- (void)dealloc {
-	[backgroundView release];
-	[loadingLabel release];
-    [super dealloc];
+#pragma Setters
+
+- (UILabel *)loadingLabel
+{
+    if (!_loadingLabel) {
+        _loadingLabel = [[UILabel alloc] init];
+    }
+    return _loadingLabel;
 }
 
+- (UIView *)backgroundView
+{
+    if (!_backgroundView) {
+        _backgroundView = [[UIView alloc] init];
+    }
+    return _backgroundView;
+}
+
+- (UIActivityIndicatorView *)activityIndicator
+{
+    if (!_activityIndicator) {
+        _activityIndicator = [[UIActivityIndicatorView alloc] init];
+    }
+    return _activityIndicator;
+}
 @end
