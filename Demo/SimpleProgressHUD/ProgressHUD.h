@@ -5,17 +5,15 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface ProgressHUD : UIView {
-	UILabel *loadingLabel;
-	UIView *backgroundView;
-	UIActivityIndicatorView* activityIndicator;
-}
+@interface ProgressHUD : UIView
 
-@property (readonly) UILabel *loadingLabel;
+@property (strong, nonatomic) UILabel *loadingLabel;
+@property (strong, nonatomic) UIView *backgroundView;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 
-+(ProgressHUD *) defaultHUD;
--(void)setLoadingText:(NSString *)loadingText;
--(void) hideActivityIndicator;
--(void) showInView:(UIView*)view;
++ (ProgressHUD *) defaultHUD;
+- (void)setLoadingText:(NSString *)loadingText;
+- (void) hideActivityIndicator;
+- (void) showInView:(UIView*)view;
 
 @end

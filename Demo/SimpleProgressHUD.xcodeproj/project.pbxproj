@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E735CCE17FA10AA0013E310 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E735CCD17FA10AA0013E310 /* Default-568h@2x.png */; };
 		D809CDFD14F4187B00D7ECD2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D809CDFC14F4187B00D7ECD2 /* UIKit.framework */; };
 		D809CDFF14F4187B00D7ECD2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D809CDFE14F4187B00D7ECD2 /* Foundation.framework */; };
 		D809CE0114F4187B00D7ECD2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D809CE0014F4187B00D7ECD2 /* CoreGraphics.framework */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E735CCD17FA10AA0013E310 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D809CDF814F4187B00D7ECD2 /* SimpleProgressHUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleProgressHUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D809CDFC14F4187B00D7ECD2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D809CDFE14F4187B00D7ECD2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -53,6 +55,7 @@
 		D809CDED14F4187B00D7ECD2 = {
 			isa = PBXGroup;
 			children = (
+				9E735CCD17FA10AA0013E310 /* Default-568h@2x.png */,
 				D809CE0214F4187B00D7ECD2 /* SimpleProgressHUD */,
 				D809CDFB14F4187B00D7ECD2 /* Frameworks */,
 				D809CDF914F4187B00D7ECD2 /* Products */,
@@ -163,6 +166,7 @@
 			files = (
 				D809CE0714F4187B00D7ECD2 /* InfoPlist.strings in Resources */,
 				D809CE1314F4187B00D7ECD2 /* ViewController.xib in Resources */,
+				9E735CCE17FA10AA0013E310 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +252,7 @@
 		D809CE1714F4187B00D7ECD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleProgressHUD/SimpleProgressHUD-Prefix.pch";
 				INFOPLIST_FILE = "SimpleProgressHUD/SimpleProgressHUD-Info.plist";
@@ -260,7 +264,7 @@
 		D809CE1814F4187B00D7ECD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleProgressHUD/SimpleProgressHUD-Prefix.pch";
 				INFOPLIST_FILE = "SimpleProgressHUD/SimpleProgressHUD-Info.plist";
